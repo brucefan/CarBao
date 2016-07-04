@@ -9,6 +9,8 @@
         <module>carbao-common</module>
         <module>carbao-core</module>
         <module>carbao-web</module>
+        <module>carbao-generator</module>
+        <module>carbao-obd</module>
     </modules>
     <packaging>pom</packaging>
 
