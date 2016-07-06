@@ -6,13 +6,16 @@
         <artifactId>carbao-parent</artifactId>
         <groupId>com.carbao</groupId>
         <version>1.0.0-SNAPSHOT</version>
-
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.carbao</groupId>
     <artifactId>carbao-web</artifactId>
     <packaging>war</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,23 +83,28 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- 编译时生成源码包 -->
             <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
-                    <attach>true</attach>
+                    <escapeString>\</escapeString>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/config/${env}/</directory>
+                            <targetPath>WEB-INF/classes</targetPath>
+                        </resource>
+                    </webResources>
+                    <archive>
+                        <mainfest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </mainfest>
+                        <mainfestEntries>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </mainfestEntries>
+                    </archive>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
-
             <!-- touch pom.xml, 在install时，确保pom.xml时间戳最新，以满足container能够自动更新最新的版本 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

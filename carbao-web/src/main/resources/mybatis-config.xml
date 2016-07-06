@@ -23,6 +23,10 @@
         <!-- 数据库超过25000秒仍未响应则超时 -->
         <setting name="defaultStatementTimeout" value="25000"/>
     </settings>
+    <plugins>
+        <plugin interceptor="com.eypg.interceptor.PageInterceptor">
+        </plugin>
+    </plugins>
     <!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径  非必须-->
     <!-- <typeAliases>
          <typeAlias alias="ApiDetail" type="com.vip.openapi_core.db.entity.ApiDetail" /> 

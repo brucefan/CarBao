@@ -4,8 +4,8 @@
     <groupId>com.carbao</groupId>
     <artifactId>carbao-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+
     <modules>
-        <module>common</module>
         <module>carbao-common</module>
         <module>carbao-core</module>
         <module>carbao-web</module>
@@ -74,4 +74,25 @@
             <version>4.1.1</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <env>prd</env>
+            </properties>
+        </profile>
+    </profiles>
 </project>
