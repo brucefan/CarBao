@@ -9,8 +9,10 @@
         <module>carbao-common</module>
         <module>carbao-core</module>
         <module>carbao-web</module>
+        <!--
         <module>carbao-generator</module>
         <module>carbao-obd</module>
+        -->
     </modules>
     <packaging>pom</packaging>
 
@@ -19,10 +21,45 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <logback.version>1.1.2</logback.version>
+        <slf4j.version>1.7.2</slf4j.version>
+        <spring.version>4.0.1.RELEASE</spring.version>
+        <aspectj.version>1.8.5</aspectj.version>
+        <junit.version>4.11</junit.version>
     </properties>
 
     <build>
         <defaultGoal>install</defaultGoal>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[2.0,)</versionRange>
+                                        <goals>
+                                            <goal>copy-dependencies</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -32,67 +69,8 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.17</version>
-            </plugin>
         </plugins>
 
     </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.5.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpasyncclient</artifactId>
-            <version>4.1.1</version>
-        </dependency>
-    </dependencies>
-
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <env>dev</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <env>test</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>prd</id>
-            <properties>
-                <env>prd</env>
-            </properties>
-        </profile>
-    </profiles>
 </project>

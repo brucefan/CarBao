@@ -89,55 +89,24 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <logback.version>1.1.2</logback.version>
-        <slf4j.version>1.7.2</slf4j.version>
-        <spring.version>4.0.1.RELEASE</spring.version>
-    </properties>
-
     <build>
         <resources>
+            <!-- 包含在java目录下的xml配置文件-->
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
             </resource>
+
             <resource>
-                <directory>
-                    src/main/resources
-                </directory>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*.xml</include>
+                </includes>
             </resource>
         </resources>
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-dependency-plugin</artifactId>
-                                        <versionRange>[2.0,)</versionRange>
-                                        <goals>
-                                            <goal>copy-dependencies</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
 
         <plugins>
             <!-- 使用JDK1.8 -->
@@ -151,41 +120,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- 编译时生成源码包 -->
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
-            <!-- touch pom.xml, 在install时，确保pom.xml时间戳最新，以满足container能够自动更新最新的版本 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <touch file="pom.xml"/>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>

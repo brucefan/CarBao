@@ -6,6 +6,7 @@
         <artifactId>carbao-parent</artifactId>
         <groupId>com.carbao</groupId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,26 +14,7 @@
     <artifactId>carbao-common</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    </properties>
-
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>
-                    src/main/resources
-                </directory>
-            </resource>
-        </resources>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -74,41 +56,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- 编译时生成源码包 -->
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
-            <!-- touch pom.xml, 在install时，确保pom.xml时间戳最新，以满足container能够自动更新最新的版本 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <touch file="pom.xml"/>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>
