@@ -20,16 +20,16 @@
         <!-- 上线去掉list内代码,配置环境变量即可 -->
         <property name="locations">
             <list>
-                <value>classpath:configs.properties</value>
+                <value>classpath:jdbc.properties</value>
             </list>
         </property>
     </bean>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="${ONE_WEB_DB_URL}"/>
-        <property name="user" value="${ONE_WEB_DB_USERNAME}"/>
-        <property name="password" value="${ONE_WEB_DB_PASSWORD}"/>
+        <property name="jdbcUrl" value="${DB_URL}"/>
+        <property name="user" value="${DB_USERNAME}"/>
+        <property name="password" value="${DB_PASSWORD}"/>
         <!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException,如设为0则无限期等待。单位毫秒。Default: 0 -->
         <property name="checkoutTimeout" value="5000"/>
         <!--初始化时获取10个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
@@ -58,8 +58,8 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.eypg.entity"/>
-        <property name="configLocation" value="classpath:configs/spring/mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath:com/eypg/mapper/*Mapper.xml"/>
+        <property name="configLocation" value="classpath:resources/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:com/car/mapper/*Mapper.xml"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
