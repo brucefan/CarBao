@@ -2,6 +2,8 @@ package com.car.dao;/**
  * Created by fanguiming on 16/7/9.
  */
 
+import org.springframework.stereotype.Repository;
+
 /**
  * BaseDao
  *

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
         
-<mapper>
+<mapper namespace="com.car.dao.UserDao">
     <!-- table to bean mapper -->
     <resultMap id="BaseResultMap" type="com.car.entity.User">
-        <id column="userId" property="user_id" jdbcType="LONG"/>
+        <id column="userId" property="user_id" jdbcType="BIGINT"/>
         <result column="userName" property="user_name" jdbcType="VARCHAR"/>
         <result column="nickName" property="nick_name" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="userType" property="user_type" jdbcType="INTEGER"/>
         <result column="faceUrl" property="face_url" jdbcType="VARCHAR"/>
-        <result column="carOwner" property="car_owner" jdbcType="LONG"/>
+        <result column="carOwner" property="car_owner" jdbcType="BIGINT"/>
         <result column="driveNumber" property="drive_number" jdbcType="VARCHAR"/>
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
 
@@ -31,16 +31,16 @@
         FROM
         t_user
         WHERE
-        where user_id = #{userId,jdbcType=LONG}
+        where user_id = #{userId,jdbcType=BIGINT}
     </select>
 
     <insert id="insert" parameterType="com.car.entity.User">
         INSERT INTO t_user (
           <include refid="Base_Column_List"/>
         ) VALUES (
-          #{userId,jdbcType=LONG}, #{userName,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
-        ,#{userType,jdbcType=INTEGER},#{faceUrl,jdbcType=VARCHAR},#{carOwner,jdbcType=LONG},#{driveNumber,jdbcType=VARCHAR}
-        ,#{mobile,jdbcType=INTEGER},#{creator,jdbcType=VARCHAR},#{createTime,jdbcType=LONG},#{updator,jdbcType=VARCHAR}
+          #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
+        ,#{userType,jdbcType=INTEGER},#{faceUrl,jdbcType=VARCHAR},#{carOwner,jdbcType=BIGINT},#{driveNumber,jdbcType=VARCHAR}
+        ,#{mobile,jdbcType=INTEGER},#{creator,jdbcType=VARCHAR},#{createTime,jdbcType=VARCHAR},#{updator,jdbcType=VARCHAR}
         ,#{updateTime,jdbcType=VARCHAR}
         )
     </insert>
@@ -50,7 +50,7 @@
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from t_user
-        where userId = #{userId,jdbcType=INTEGER}
+        where userId = #{userId,jdbcType=BIGINT}
     </delete>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.car.entity.User">
