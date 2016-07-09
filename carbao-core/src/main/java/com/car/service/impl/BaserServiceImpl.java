@@ -1,5 +1,6 @@
 package com.car.service.impl;
 
+import com.car.dao.BaseDao;
 import com.car.mapper.BaseMapper;
 import com.car.service.BaseService;
 import org.springframework.stereotype.Service;
@@ -7,30 +8,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class BaserServiceImpl<T, PK> implements BaseService<T, PK> {
 
-    private BaseMapper<T, PK> baseMapper;
+    private BaseDao<T, PK> baseDao;
 
-    public void setBaseMapper(BaseMapper<T, PK> baseMapper) {
-        this.baseMapper = baseMapper;
+    public void setBaseDao(BaseDao<T, PK> baseMapper) {
+        this.baseDao = baseDao;
     }
 
     @Override
     public void add(T t) {
-        baseMapper.insertSelective(t);
+        baseDao.insertSelective(t);
     }
 
     @Override
     public T findById(PK id) {
-        return baseMapper.selectByPrimaryKey(id);
+        return baseDao.selectByPrimaryKey(id);
     }
 
     @Override
     public int delete(PK id) {
-        return baseMapper.deleteByPrimaryKey(id);
+        return baseDao.deleteByPrimaryKey(id);
     }
 
     @Override
     public void update(T t) {
-        baseMapper.updateByPrimaryKeySelective(t);
+        baseDao.updateByPrimaryKeySelective(t);
     }
 
 

@@ -2,26 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd
-	http://www.springframework.org/schema/task 
-    http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+	">
 
     <!-- 自动扫描dao和biz包(自动注入) -->
-    <context:component-scan base-package="com.eypg"/>
-
-    <bean id="taskService" class="com.eypg.task.TaskServiceImpl"/>
-
-    <!-- 启动后加载相关信息bean -->
-    <bean id="applicationContextInit" class="com.eypg.base.ApplicationContextInit"/>
-
-    <!-- 定时任务处理 -->
-    <task:scheduler id="taskSchedulers" pool-size="6"/>
-    <task:scheduled-tasks scheduler="taskSchedulers">
-        <task:scheduled ref="taskService" method="init" cron="* 30 * * * ?"/>
-    </task:scheduled-tasks>
+    <context:component-scan base-package="com.car"/>
 
 </beans>
