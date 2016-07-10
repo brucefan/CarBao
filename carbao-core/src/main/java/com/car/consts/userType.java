@@ -2,6 +2,8 @@ package com.car.consts;/**
  * Created by fanguiming on 16/7/10.
  */
 
+import java.util.Map;
+
 /**
  * userType
  *
@@ -37,4 +39,5 @@ public enum UserType {
     public void setName(String name) {
         this.name = name;
     }
+
 }

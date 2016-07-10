@@ -32,6 +32,8 @@ public class User extends PageModel implements java.io.Serializable {
 
     private String mobile;
 
+    private String openId;
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -106,5 +108,13 @@ public class User extends PageModel implements java.io.Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 }
