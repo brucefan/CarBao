@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
  * @author Bruce01.fan
  * @date 16/7/9
  */
-@Repository("userDao")
+@Repository
 public interface UserDao extends BaseDao {
 }

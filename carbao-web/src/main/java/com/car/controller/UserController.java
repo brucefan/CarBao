@@ -5,6 +5,7 @@ package com.car.controller;/**
 import com.car.consts.UserType;
 import com.car.entity.User;
 import com.car.service.UserService;
+import com.car.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,7 +64,12 @@ public class UserController {
                               @RequestParam(value = "password", required = true) String password) {
 
         ModelAndView mav = new ModelAndView();
+
+        UserVO userVO = userService.login(userName, password);
+
         mav.setViewName("home");
+        mav.addObject("user", userVO);
+
         return mav;
     }
 }
