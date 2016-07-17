@@ -11,10 +11,9 @@
         <result column="car_series" property="carSeries" jdbcType="VARCHAR"/>
         <result column="engine_number" property="engineNumber" jdbcType="VARCHAR"/>
         <result column="car_vin" property="carVin" jdbcType="VARCHAR"/>
-
-        <result column="creator" property="creator" jdbcType="VARCHAR"/>
+        <result column="creator" property="creator" jdbcType="BIGINT"/>
         <result column="createTime" property="createTime" jdbcType="VARCHAR"/>
-        <result column="updator" property="updator" jdbcType="VARCHAR"/>
+        <result column="updator" property="updator" jdbcType="BIGINT"/>
         <result column="updateTime" property="updateTime" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -52,13 +51,14 @@
 
     <insert id="insert" parameterType="com.car.entity.Car">
         INSERT INTO t_car (
-        <include refid="Base_Column_List"/>
+        owner_id,license_province,plate_number,car_series,engine_number,car_vin,
+        creator,createTime,updator,updateTime
         ) VALUES (
-        #{carId,jdbcType=BIGINT},#{ownerId,jdbcType=BIGINT},
-        #{licenseProvince,jdbcType=VARCHAR},#{plateNumber,jdbcType=VARCHAR},#{carSeries,jdbcType=VARCHAR}
-        ,#{engineNumber,jdbcType=VARCHAR},#{carVin,jdbcType=VARCHAR},
-        ,#{creator,jdbcType=VARCHAR},#{crateTime,jdbcType=VARCHAR},#{updator,jdbcType=VARCHAR}
-        ,#{updateTime,jdbcType=VARCHAR}
+        #{ownerId,jdbcType=BIGINT},
+        #{licenseProvince,jdbcType=VARCHAR},#{plateNumber,jdbcType=VARCHAR},#{carSeries,jdbcType=VARCHAR},
+        #{engineNumber,jdbcType=VARCHAR},#{carVin,jdbcType=VARCHAR},
+        #{creator,jdbcType=BIGINT},#{createTime,jdbcType=VARCHAR},#{updator,jdbcType=BIGINT},
+        #{updateTime,jdbcType=VARCHAR}
         )
     </insert>
 

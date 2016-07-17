@@ -17,12 +17,12 @@
 </c:if>
 
 <c:if test="${carId == null}">
-    <a href="<c:url value="/user/userInfo/enter?userId=${userId}"/>">注册车辆信息</a>
+    <a href="<c:url value="/car/carInfo/enter?userId=${userId}"/>">注册车辆信息</a>
     </br>
 </c:if>
 
 <c:if test="${carId != null}">
-    <a href="">完善车辆信息</a>
+    <a href="<c:url value="/car/carInfo/enter?userId=${userId}&carId=${carId}"/>">完善车辆信息</a>
     </br>
 </c:if>
 

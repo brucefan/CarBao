@@ -14,9 +14,9 @@
         <result column="drive_number" property="driveNumber" jdbcType="VARCHAR"/>
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
 
-        <result column="creator" property="creator" jdbcType="VARCHAR"/>
+        <result column="creator" property="creator" jdbcType="BIGINT"/>
         <result column="createTime" property="createTime" jdbcType="VARCHAR"/>
-        <result column="updator" property="updator" jdbcType="VARCHAR"/>
+        <result column="updator" property="updator" jdbcType="BIGINT"/>
         <result column="updateTime" property="updateTime" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -45,11 +45,12 @@
 
     <insert id="insert" parameterType="com.car.entity.User">
         INSERT INTO t_user (
-          <include refid="Base_Column_List"/>
+        user_name,nick_name,password,user_type,face_url,car_owner,drive_number,mobile,
+        creator,createTime,updator,updateTime
         ) VALUES (
-          #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
+        #{userName,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
         ,#{userType,jdbcType=INTEGER},#{faceUrl,jdbcType=VARCHAR},#{carOwner,jdbcType=BIGINT},#{driveNumber,jdbcType=VARCHAR}
-        ,#{mobile,jdbcType=INTEGER},#{creator,jdbcType=VARCHAR},#{createTime,jdbcType=VARCHAR},#{updator,jdbcType=VARCHAR}
+        ,#{mobile,jdbcType=INTEGER},#{creator,jdbcType=BIGINT},#{createTime,jdbcType=VARCHAR},#{updator,jdbcType=BIGINT}
         ,#{updateTime,jdbcType=VARCHAR}
         )
     </insert>

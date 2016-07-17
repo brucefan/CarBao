@@ -52,7 +52,7 @@
 
         <tr>
             <td colspan="2">
-                <input type="submit" value="更新用户信息"/>
+                <input type="submit" value="保存用户信息"/>
             </td>
         </tr>
 

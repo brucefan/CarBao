@@ -2,6 +2,8 @@ package com.car.controller;/**
  * Created by fanguiming on 16/7/13.
  */
 
+import com.car.consts.CarSeries;
+import com.car.consts.Province;
 import com.car.entity.Car;
 import com.car.entity.User;
 import com.car.service.CarService;
@@ -48,9 +50,18 @@ public class CarController {
 
         mav.addObject("userId", userId);
         mav.addObject("userType", user.getUserType());
+        mav.addObject("provinces", Province.values());
+        mav.addObject("carSeries", CarSeries.values());
+
         if (carId != null) {
-            mav.addObject("carId", carId);
+            Car car = carService.findById(carId);
+            if (car == null) {
+                mav.addObject("error", "车量信息查询失败");
+            } else {
+                mav.addObject("car", car);
+            }
         }
+
         return mav;
     }
 
