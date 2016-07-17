@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<form action="<c:url value="/user/login"/>">
+<form action="<c:url value="/user/login"/>" method="post">
     <table>
         <tr>
             <td>用户名</td>
-            <td><input name="user" type="text"/></td>
+            <td><input name="userName" type="text"/></td>
         </tr>
         <tr>
             <td>密码</td>

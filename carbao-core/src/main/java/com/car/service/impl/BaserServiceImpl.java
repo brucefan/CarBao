@@ -10,13 +10,13 @@ public class BaserServiceImpl<T, PK> implements BaseService<T, PK> {
 
     private BaseDao<T, PK> baseDao;
 
-    public void setBaseDao(BaseDao<T, PK> baseMapper) {
+    public void setBaseDao(BaseDao<T, PK> baseDao) {
         this.baseDao = baseDao;
     }
 
     @Override
     public void add(T t) {
-        baseDao.insertSelective(t);
+        baseDao.insert(t);
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.car.service;/**
 
 import com.car.entity.Car;
 import com.car.entity.User;
+import com.car.vo.RestResult;
 
 /**
  * CarService
@@ -13,5 +14,8 @@ import com.car.entity.User;
  */
 public interface CarService extends BaseService<Car, Long> {
 
-    public boolean saveCarInfo(User user, Car car);
+    public RestResult saveCarInfo(User user, Car car);
+
+    public Car queryCarByParams(Car params);
+
 }

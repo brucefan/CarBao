@@ -26,8 +26,12 @@ public class User extends PageModel implements java.io.Serializable {
     /** 1-车主 2-驾驶员 */
     private int userType;
 
+    /**
+     * 车主 id
+     */
     private long carOwner;
 
+    /** 身份证号码 */
     private String driveNumber;
 
     private String mobile;

@@ -5,6 +5,7 @@ import com.car.entity.User;
 import com.car.interceptor.Pagination;
 import com.car.mapper.UserMapper;
 import com.car.service.UserService;
+import com.car.vo.RestResult;
 import com.car.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("userService")
+@Service
 public class UserServiceImpl extends BaserServiceImpl<User, Long> implements UserService {
     @Autowired
     private UserDao userDao;
@@ -26,8 +27,17 @@ public class UserServiceImpl extends BaserServiceImpl<User, Long> implements Use
     }
 
     @Override
-    public UserVO login(String userName, String password) {
+    public RestResult login(String userName, String password) {
 
-        return null;
+        RestResult restResult = null;
+        User user = userDao.queryUserByName(userName);
+
+        if (user == null || !user.getPassword().equalsIgnoreCase(password)) {
+            restResult = new RestResult(RestResult.FAILED_CODE, "用户账号名或密码不正确");
+        } else {
+            restResult = new RestResult(user);
+        }
+
+        return restResult;
     }
 }

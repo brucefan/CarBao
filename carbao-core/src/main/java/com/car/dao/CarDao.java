@@ -2,6 +2,7 @@ package com.car.dao;/**
  * Created by fanguiming on 16/7/13.
  */
 
+import com.car.entity.Car;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,4 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CarDao extends BaseDao {
+
+    public Car selectCarByParams(Car params);
 }

@@ -6,11 +6,11 @@
     <title>用户注册</title>
 </head>
 <body>
-<form action="<c:url value="/user/register"/>">
+<form action="<c:url value="/user/register"/>" method="post">
     <table>
         <tr>
             <td>用户名</td>
-            <td><input name="user" type="text"/></td>
+            <td><input name="userName" type="text"/></td>
         </tr>
         <tr>
             <td>用户类型</td>

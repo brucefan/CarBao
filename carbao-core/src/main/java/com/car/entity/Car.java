@@ -12,7 +12,7 @@ import com.car.interceptor.PageModel;
  */
 public class Car extends PageModel implements java.io.Serializable {
 
-    private long carId;
+    private Long carId;
 
     /**
      * 车主id
@@ -44,11 +44,11 @@ public class Car extends PageModel implements java.io.Serializable {
      */
     private String carVin;
 
-    public long getCarId() {
+    public Long getCarId() {
         return carId;
     }
 
-    public void setCarId(long carId) {
+    public void setCarId(Long carId) {
         this.carId = carId;
     }
 

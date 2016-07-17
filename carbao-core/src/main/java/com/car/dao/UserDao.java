@@ -2,6 +2,7 @@ package com.car.dao;/**
  * Created by fanguiming on 16/7/9.
  */
 
+import com.car.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,6 @@ import org.springframework.stereotype.Service;
  */
 @Repository
 public interface UserDao extends BaseDao {
+
+    public User queryUserByName(String name);
 }

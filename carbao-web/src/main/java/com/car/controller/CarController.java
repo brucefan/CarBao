@@ -2,7 +2,11 @@ package com.car.controller;/**
  * Created by fanguiming on 16/7/13.
  */
 
+import com.car.entity.Car;
+import com.car.entity.User;
 import com.car.service.CarService;
+import com.car.service.UserService;
+import com.car.vo.RestResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
  * @date 16/7/13
  */
 @Controller
+@RequestMapping("/car")
 public class CarController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 进入车辆信息中心
@@ -29,29 +37,43 @@ public class CarController {
      * @param carId
      * @return
      */
-    @RequestMapping(value = "/enterCarInfo")
+    @RequestMapping(value = "/carInfo/enter")
     public ModelAndView enterCarInfo(
             @RequestParam(value = "userId", required = true) Long userId,
             @RequestParam(value = "carId", required = false) Long carId
     ) {
+        ModelAndView mav = new ModelAndView("car/carInfo");
 
-        return null;
+        User user = userService.findById(userId);
+
+        mav.addObject("userId", userId);
+        mav.addObject("userType", user.getUserType());
+        if (carId != null) {
+            mav.addObject("carId", carId);
+        }
+        return mav;
     }
 
     /**
      * 保存车辆信息
      *
      * @param userId
-     * @param carId
      * @return
      */
-    @RequestMapping(value = "/saveCarInfo")
+    @RequestMapping(value = "/carInfo/save")
     public ModelAndView saveCarInfo(
             @RequestParam(value = "userId", required = true) Long userId,
-            @RequestParam(value = "carId", required = false) Long carId
+            @RequestParam(value = "userType", required = true) int userType,
+            Car car
     ) {
+        User user = new User();
+        user.setUserId(userId);
+        user.setUserType(userType);
 
-        return null;
+        RestResult restResult = carService.saveCarInfo(user, car);
+        ModelAndView mav = new ModelAndView("home");
+
+        return mav;
     }
 
 }
